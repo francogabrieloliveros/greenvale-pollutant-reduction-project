@@ -1,3 +1,5 @@
+<img src="/public/aerokatharos.png" alt="" style="width: 100%;">
+
 # Aero Katharos
 
 ## City of Greenvale Pollutant Reduction Project
@@ -33,7 +35,7 @@ All selected projects and the values of gas pollutants to be reduced are added t
 
 The Tableau object is utilized by the Simplex class. Dual Simplex Minimization is performed in the tableau, where the final solution is contained in the last row of the tableau. The Simplex class also contains all the iterations and solutions of the resulting tableau.
 
-## installation
+## Installation
 
 Try out the website with this link:
 
@@ -41,10 +43,10 @@ Try out the website with this link:
 
 or create a local copy:
 
-    git clone https://github.com/francogabrieloliveros/greenvale-pollutant-reduction-project.git
-
-    cd greenvale-pollutant-reduction-project
+    git clone https://github.com/francogabrieloliveros/greenvale-pollutant-reduction-project.git .
 
     npm install
 
     npm run dev
+
+take note that you should have nodeJS and npm installed in your local machine.
