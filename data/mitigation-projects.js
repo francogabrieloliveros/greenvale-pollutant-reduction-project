@@ -181,7 +181,7 @@ const mitigationProjects = [
 
   {
     cost: 400,
-    name: "Behavioral Demand-Reduciton Program",
+    name: "Behavioral Demand-Reduction Program",
     pollutantReduction: [9, 0.4, 0.05, 0.05, 0.01, 0.3, 2.5, 0.01, 0.01, 0.01],
   },
 ];

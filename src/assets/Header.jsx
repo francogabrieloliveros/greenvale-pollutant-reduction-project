@@ -1,7 +1,6 @@
 import { useState } from "react";
 import greenvale from "/greenvale.svg";
 import menu from "/hamburger.svg";
-import "../styles/landing.css";
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);

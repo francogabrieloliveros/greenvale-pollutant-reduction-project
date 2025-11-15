@@ -22,6 +22,7 @@ import Simplex from "/calculation/Simplex.js";
 import Tableau from "/calculation/Tableau.js";
 
 function Project() {
+  // Variables with monitored changes
   const [expandSideBar, setExpandSideBar] = useState(true);
   const [showProjects, setShowProjects] = useState(true);
   const [buttonsPressed, setButtonsPressed] = useState(
@@ -31,9 +32,11 @@ function Project() {
     useState(pollutantReduc);
   const [maxImp, setMaxImp] = useState(20);
 
+  // Elements with preset structure
   const projectsButton = (
     <button
       className="mb-5 w-5"
+      // Clicking expands sidebar and shows mitigation projects
       onClick={() => {
         setShowProjects(true);
         setExpandSideBar(true);
@@ -46,6 +49,7 @@ function Project() {
   const optionsButton = (
     <button
       className="w-5"
+      // CLicking expands sidebar and shows pollutant reductions
       onClick={() => {
         setShowProjects(false);
         setExpandSideBar(true);
@@ -75,9 +79,11 @@ function Project() {
     </div>
   );
 
+  // Iterate through projects and add data to MitigationButton component
   const buttons = projects.map((project, i) => (
     <MitigationButton
       pressed={buttonsPressed[i]}
+      // Clicking set the buttons index as pressed and shows starter message
       setButtonsPressed={() => {
         setButtonsPressed((prev) => prev.map((v, idx) => (idx === i ? !v : v)));
         setMainDisplay(starterMain);
@@ -87,6 +93,7 @@ function Project() {
     />
   ));
 
+  // Iterate through pollutants and add data to Input component
   const inputs = pollutantReduc.map((pollutant, i) => (
     <Input
       id={pollutant.id}
@@ -94,6 +101,7 @@ function Project() {
       sub={pollutant.sub}
       name2={pollutant.name2}
       amount={pollutantReducAmount[i].amount}
+      // Editing changes pollutant reductions and shows starter message
       setAmount={(e) => {
         setPollutantReducAmount((prev) =>
           prev.map((v, idx) =>
@@ -105,6 +113,7 @@ function Project() {
     />
   ));
 
+  // Create a tableau and simplex object to perform calculations
   function calculate() {
     const pollutants = pollutantReducAmount.map((p) => p.amount);
     const tableau = new Tableau(buttonsPressed, pollutants, maxImp);
@@ -113,6 +122,7 @@ function Project() {
       const simplex = new Simplex(tableau.tableau);
       console.log(simplex.resultMatrix);
 
+      // Render table if calculation is successful
       return (
         <Table
           data={simplex.resultMatrix}
@@ -121,11 +131,13 @@ function Project() {
         />
       );
     } catch (e) {
+      // Renders infeasible message in case of error
       console.error(e);
       return infeasible;
     }
   }
 
+  // Contains a lot of conditional rendering (to long to explain)
   return (
     <>
       <Header />
@@ -168,6 +180,8 @@ function Project() {
                         type="number"
                         id="maxImp"
                         value={maxImp}
+                        // Changes maximum number of implementation per project
+                        // Shows starter message when changed
                         onChange={(e) => {
                           setMaxImp(e.target.value);
                           setMainDisplay(starterMain);
@@ -182,6 +196,9 @@ function Project() {
               <div className="absolute right-0 bottom-0 pr-10 pb-5">
                 <button
                   className="rounded-full bg-white px-4 py-2 font-bold text-gray-500 transition-all hover:bg-gray-500 hover:text-white active:scale-110"
+                  // Sets all project buttons to false
+                  // Resets pollutant reductions and max implementation
+                  // Shows starter message
                   onClick={() => {
                     setButtonsPressed(new Array(30).fill(false));
                     setPollutantReducAmount([...pollutantReduc]);
@@ -193,12 +210,14 @@ function Project() {
                 </button>
                 <button
                   className="ml-2 rounded-full bg-white px-4 py-2 font-bold text-gray-500 transition-all hover:bg-gray-500 hover:text-white active:scale-110"
+                  // Sets all project buttons to true
                   onClick={() => setButtonsPressed(new Array(30).fill(true))}
                 >
                   Select All
                 </button>
                 <button
                   className="ml-2 rounded-full bg-red-400 px-4 py-2 font-bold text-white transition-all hover:bg-white hover:text-red-400 active:scale-110"
+                  // Performs calculations
                   onClick={() => setMainDisplay(calculate())}
                 >
                   Calculate

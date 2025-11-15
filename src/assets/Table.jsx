@@ -7,8 +7,10 @@ function Table(props) {
   const data = props.data;
   const iters = props.iter;
 
+  // Controls visibility of iterations
   const [showIters, setShowIters] = useState(false);
 
+  // Create table of results
   const dataDisp = (
     <div className="mb-5 grid grid-cols-3 gap-2 rounded-xl bg-white p-5 text-gray-500 shadow-xl">
       <div className="font-bold">
@@ -20,21 +22,25 @@ function Table(props) {
       <div className="font-bold">
         <h2>Cost($)</h2>
       </div>
-      {projects.map((proj, ind) => (
-        <>
-          <div className="rounded-xs bg-gray-100 p-2 shadow-xs">
-            {proj.name}
-          </div>
-          <div className="rounded-xs bg-gray-100 p-2 text-center shadow-xs">
-            {data[data.length - 1][ind + 10 + data.length - 1].toFixed(2)}
-          </div>
-          <div className="rounded-xs bg-gray-100 p-2 text-center shadow-xs">
-            {(
-              proj.cost * data[data.length - 1][ind + 10 + data.length - 1]
-            ).toFixed(2)}
-          </div>
-        </>
-      ))}
+
+      {
+        // Finds the xvalues at the last row of the result tableau
+        projects.map((proj, ind) => (
+          <>
+            <div className="rounded-xs bg-gray-100 p-2 shadow-xs">
+              {proj.name}
+            </div>
+            <div className="rounded-xs bg-gray-100 p-2 text-center shadow-xs">
+              {data[data.length - 1][ind + 10 + data.length - 1].toFixed(2)}
+            </div>
+            <div className="rounded-xs bg-gray-100 p-2 text-center shadow-xs">
+              {(
+                proj.cost * data[data.length - 1][ind + 10 + data.length - 1]
+              ).toFixed(2)}
+            </div>
+          </>
+        ))
+      }
       <div className="rounded-xs bg-gray-100 p-2 font-bold shadow-xs">
         Total
       </div>
@@ -45,6 +51,7 @@ function Table(props) {
     </div>
   );
 
+  // Creates a table for each iteration tableau
   const itersDisp = iters.map((iter) => {
     const table = iter.map((row) => (
       <tr>
