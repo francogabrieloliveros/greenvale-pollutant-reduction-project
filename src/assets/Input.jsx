@@ -1,11 +1,8 @@
 function Input(props) {
   return (
-    <div
-      className="h-10 inline-flex items-center justify-start rounded-full overflow-hidden 
-                 border-gray-400 border-2"
-    >
+    <div className="inline-flex h-10 items-center justify-start overflow-hidden rounded-full border-2 border-gray-400">
       <label
-        className="text-white h-full bg-gray-400 px-2 flex items-center"
+        className="flex h-full items-center bg-gray-400 px-2 text-white"
         for={props.id}
       >
         {props.name}
@@ -14,7 +11,7 @@ function Input(props) {
         <p className="text-xs">(tons)</p>
       </label>
       <input
-        className="bg-white w-full h-full text-center font-light text-gray-500"
+        className="h-full w-full bg-white text-center font-light text-gray-500"
         type="number"
         id={props.id}
         value={props.amount}

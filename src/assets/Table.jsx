@@ -10,7 +10,7 @@ function Table(props) {
   const [showIters, setShowIters] = useState(false);
 
   const dataDisp = (
-    <div className="grid grid-cols-3 gap-2 bg-white rounded-xl shadow-xl mb-5 p-5 text-gray-500">
+    <div className="mb-5 grid grid-cols-3 gap-2 rounded-xl bg-white p-5 text-gray-500 shadow-xl">
       <div className="font-bold">
         <h2>Mitigation Project</h2>
       </div>
@@ -22,24 +22,24 @@ function Table(props) {
       </div>
       {projects.map((proj, ind) => (
         <>
-          <div className="bg-gray-100 p-2 shadow-xs rounded-xs">
+          <div className="rounded-xs bg-gray-100 p-2 shadow-xs">
             {proj.name}
           </div>
-          <div className="bg-gray-100 p-2 text-center shadow-xs rounded-xs">
+          <div className="rounded-xs bg-gray-100 p-2 text-center shadow-xs">
             {data[data.length - 1][ind + 10 + data.length - 1].toFixed(2)}
           </div>
-          <div className="bg-gray-100 p-2 text-center shadow-xs rounded-xs">
+          <div className="rounded-xs bg-gray-100 p-2 text-center shadow-xs">
             {(
               proj.cost * data[data.length - 1][ind + 10 + data.length - 1]
             ).toFixed(2)}
           </div>
         </>
       ))}
-      <div className="bg-gray-100 p-2 shadow-xs rounded-xs font-bold">
+      <div className="rounded-xs bg-gray-100 p-2 font-bold shadow-xs">
         Total
       </div>
-      <div className="bg-gray-100 p-2 text-center shadow-xs rounded-xs"></div>
-      <div className="bg-gray-100 p-2 text-center shadow-xs rounded-xs font-bold">
+      <div className="rounded-xs bg-gray-100 p-2 text-center shadow-xs"></div>
+      <div className="rounded-xs bg-gray-100 p-2 text-center font-bold shadow-xs">
         {data[data.length - 1][data[0].length - 1].toFixed(2)}
       </div>
     </div>
@@ -49,7 +49,7 @@ function Table(props) {
     const table = iter.map((row) => (
       <tr>
         {row.map((el) => (
-          <td className="text-xs p-2 text-center shadow-xs bg-gray-100">
+          <td className="bg-gray-100 p-2 text-center text-xs shadow-xs">
             {el.toFixed(2)}
           </td>
         ))}
@@ -78,7 +78,7 @@ function Table(props) {
     });
 
     return (
-      <table className="border-separate [border-spacing:5px] bg-white shadow-xl p-5 rounded-xl text-gray-500 mb-5 transition-all">
+      <table className="mb-5 border-separate [border-spacing:5px] rounded-xl bg-white p-5 text-gray-500 shadow-xl transition-all">
         <thead>
           <tr>{labels}</tr>
         </thead>
@@ -92,7 +92,7 @@ function Table(props) {
       <div className="">
         {dataDisp}
         <button
-          className="flex flex-col items-center mx-auto mb-5 transition-all"
+          className="mx-auto mb-5 flex flex-col items-center transition-all"
           onClick={() => setShowIters(!showIters)}
         >
           <p className="text-gray-500 transition-all">

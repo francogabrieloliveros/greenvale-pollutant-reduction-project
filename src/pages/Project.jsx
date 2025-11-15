@@ -33,7 +33,7 @@ function Project() {
 
   const projectsButton = (
     <button
-      className="w-5 mb-5"
+      className="mb-5 w-5"
       onClick={() => {
         setShowProjects(true);
         setExpandSideBar(true);
@@ -56,8 +56,8 @@ function Project() {
   );
 
   const starterMain = (
-    <div className={`mt-[calc(50dvh-129px)]  flex-col items-center flex`}>
-      <img className="w-60 mb-5" src={greenvale} alt="" />
+    <div className={`mt-[calc(50dvh-129px)] flex flex-col items-center`}>
+      <img className="mb-5 w-60" src={greenvale} alt="" />
       <p className="text-gray-500">
         Select mitigation projects and click calculate to start.
       </p>
@@ -66,8 +66,8 @@ function Project() {
   const [mainDisplay, setMainDisplay] = useState(starterMain);
 
   const infeasible = (
-    <div className={`mt-[calc(50dvh-129px)]  flex-col items-center flex`}>
-      <img className="w-60 mb-5" src={greenvale} alt="" />
+    <div className={`mt-[calc(50dvh-129px)] flex flex-col items-center`}>
+      <img className="mb-5 w-60" src={greenvale} alt="" />
       <p className="text-gray-500">
         The problem is infeasible, select more mitigation projects or adjust the
         options to fix.
@@ -130,10 +130,9 @@ function Project() {
     <>
       <Header />
 
-      <aside className="top-[50px] fixed flex z-10">
+      <aside className="fixed top-[50px] z-10 flex">
         <div
-          className={`${expandSideBar ? "w-[320px]" : "w-[50px]"} bg-[#F5F5E7] h-[calc(100dvh-50px)]  
-                      shadow-xl transition-all p-5 relative`}
+          className={`${expandSideBar ? "w-[320px]" : "w-[50px]"} relative h-[calc(100dvh-50px)] bg-[#F5F5E7] p-5 shadow-xl transition-all`}
         >
           {expandSideBar ? (
             <div>
@@ -141,40 +140,31 @@ function Project() {
                 {showProjects ? (
                   <>
                     <div className="block text-right">{optionsButton}</div>
-                    <div
-                      className="grid grid-cols-2 gap-4 h-[calc(100%-100px)] absolute overflow-y-auto 
-                                 w-[calc(100%-30px)] p-5"
-                    >
+                    <div className="absolute grid h-[calc(100%-100px)] w-[calc(100%-30px)] grid-cols-2 gap-4 overflow-y-auto p-5">
                       {buttons}
                     </div>
                   </>
                 ) : (
                   <>
                     <div className="block text-right">{projectsButton}</div>
-                    <h2 className="font-bold text-gray-500 ml-5">
+                    <h2 className="ml-5 font-bold text-gray-500">
                       Target Pollutant Reduction Amount
                     </h2>
-                    <div
-                      className="grid grid-cols-2 gap-4 overflow-y-auto 
-                                 w-[calc(100%-10px)] px-5 my-2"
-                    >
+                    <div className="my-2 grid w-[calc(100%-10px)] grid-cols-2 gap-4 overflow-y-auto px-5">
                       {inputs}
                     </div>
-                    <h2 className="font-bold text-gray-500 ml-5 mt-10">
+                    <h2 className="mt-10 ml-5 font-bold text-gray-500">
                       Maximum Number of Implementations Per Project
                     </h2>
-                    <div
-                      className="h-10 inline-flex items-center justify-start rounded-full overflow-hidden 
-                                 border-gray-400 border-2 w-[calc(100%-30px)] ml-5 mt-2"
-                    >
+                    <div className="mt-2 ml-5 inline-flex h-10 w-[calc(100%-30px)] items-center justify-start overflow-hidden rounded-full border-2 border-gray-400">
                       <label
-                        className="text-white h-full bg-gray-400 px-2 flex items-center text-base/4"
+                        className="flex h-full items-center bg-gray-400 px-2 text-base/4 text-white"
                         for="maxImp"
                       >
                         Max No. Implementation
                       </label>
                       <input
-                        className="bg-white w-full h-full text-center font-light text-gray-500"
+                        className="h-full w-full bg-white text-center font-light text-gray-500"
                         type="number"
                         id="maxImp"
                         value={maxImp}
@@ -189,10 +179,9 @@ function Project() {
                 )}
               </div>
 
-              <div className="absolute bottom-0 right-0 pb-5 pr-10">
+              <div className="absolute right-0 bottom-0 pr-10 pb-5">
                 <button
-                  className="font-bold bg-white px-4 py-2 text-gray-500 rounded-full hover:bg-gray-500 
-                        hover:text-white transition-all active:scale-110"
+                  className="rounded-full bg-white px-4 py-2 font-bold text-gray-500 transition-all hover:bg-gray-500 hover:text-white active:scale-110"
                   onClick={() => {
                     setButtonsPressed(new Array(30).fill(false));
                     setPollutantReducAmount([...pollutantReduc]);
@@ -203,15 +192,13 @@ function Project() {
                   Reset
                 </button>
                 <button
-                  className="ml-2 font-bold bg-white px-4 py-2 text-gray-500 rounded-full hover:bg-gray-500 
-                         hover:text-white transition-all active:scale-110"
+                  className="ml-2 rounded-full bg-white px-4 py-2 font-bold text-gray-500 transition-all hover:bg-gray-500 hover:text-white active:scale-110"
                   onClick={() => setButtonsPressed(new Array(30).fill(true))}
                 >
                   Select All
                 </button>
                 <button
-                  className="ml-2 font-bold bg-red-400 px-4 py-2 text-white rounded-full hover:bg-white 
-                         hover:text-red-400 transition-all active:scale-110"
+                  className="ml-2 rounded-full bg-red-400 px-4 py-2 font-bold text-white transition-all hover:bg-white hover:text-red-400 active:scale-110"
                   onClick={() => setMainDisplay(calculate())}
                 >
                   Calculate
@@ -235,8 +222,7 @@ function Project() {
       </aside>
 
       <main
-        className={`top-[50px] relative p-5 ${expandSideBar ? "left-[340px] hidden md:block" : "left-[65px] block md:block"}
-                    ${expandSideBar ? "w-[calc(100dvw-340px)]" : "w-[calc(100dvw-65px)]"}`}
+        className={`relative top-[50px] p-5 ${expandSideBar ? "left-[340px] hidden md:block" : "left-[65px] block md:block"} ${expandSideBar ? "w-[calc(100dvw-340px)]" : "w-[calc(100dvw-65px)]"}`}
       >
         {mainDisplay}
       </main>
