@@ -183,7 +183,7 @@ function Project() {
                         // Changes maximum number of implementation per project
                         // Shows starter message when changed
                         onChange={(e) => {
-                          setMaxImp(e.target.value);
+                          setMaxImp(parseInt(e.target.value));
                           setMainDisplay(starterMain);
                         }}
                         min={0}
