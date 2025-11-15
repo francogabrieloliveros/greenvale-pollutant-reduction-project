@@ -30,11 +30,11 @@ take note that you should have nodeJS and npm installed in your local machine.
 ## Usage
 
 1. Click Try Project.
-2. Click on the mitigation projects that you want to add to the calculation.
+2. Click the mitigation projects that you want to add to the calculation.
 3. Click Calculate and see the results.
 
-You can change the pollutant reduction goals by clicking on the gear option and changing the values.
-You can see each iteration of the calculation by clicking on Show Iterations after calculation.
+- You can change the pollutant reduction goals by clicking on the gear option and changing the values.
+- You can see each iteration of the calculation by clicking on Show Iterations after calculation.
 
 ## Calculations
 
