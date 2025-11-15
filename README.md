@@ -37,14 +37,14 @@ The Tableau object is utilized by the Simplex class. Dual Simplex Minimization i
 
 Try out the website with this link:
 
-https://greenvale-pollutant-reduction-proje.vercel.app/
+    https://greenvale-pollutant-reduction-proje.vercel.app/
 
 or create a local copy:
 
-git clone https://github.com/francogabrieloliveros/greenvale-pollutant-reduction-project.git
+    git clone https://github.com/francogabrieloliveros/greenvale-pollutant-reduction-project.git
 
-cd greenvale-pollutant-reduction-project
+    cd greenvale-pollutant-reduction-project
 
-npm install
+    npm install
 
-npm run dev
+    npm run dev
