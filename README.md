@@ -1,4 +1,4 @@
-<img src="/public/aerokatharos.png" alt="" style="width: 100%;">
+<img src="/public/aero-katharos.png" alt="" style="width: 100%;">
 
 ## City of Greenvale Pollutant Reduction Project
 
