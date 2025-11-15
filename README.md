@@ -1,5 +1,12 @@
 <img src="/public/aero-katharos.png" alt="" style="width: 100%;">
 
+<div align="center">
+  <img alt="Static Badge" src="https://img.shields.io/badge/Learning-React-skyblue">
+  <img alt="Static Badge" src="https://img.shields.io/badge/Data-Analysis-red">
+  <img alt="Static Badge" src="https://img.shields.io/badge/Java-Script-yellow">
+  <img alt="Static Badge" src="https://img.shields.io/badge/Tailwind-CSS-blue">
+</div>
+
 ## City of Greenvale Pollutant Reduction Project
 
 This project aims to aid the pollutant reduction project of City of Greenvale by approximating the smallest cost to meet the City's goals pollutant reduction. A list of mitigation projects and their corresponding cost can be selected and the program will display the optimum number of implementations per project.
