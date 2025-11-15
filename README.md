@@ -1,16 +1,50 @@
-# React + Vite
+# Aero Katharos
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## City of Greenvale Pollutant Reduction Project
 
-Currently, two official plugins are available:
+This project aims to aid the pollutant reduction project of City of Greenvale by approximating the smallest cost to meet the City's goals pollutant reduction. A list of mitigation projects and their corresponding cost can be selected and the program will display the optimum number of implementations per project.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Calculations
 
-## React Compiler
+### Mitigation Projects
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Each project reduces a certain amount of gas pollutant. Selected projects by the user are used for the calculation.
 
-## Expanding the ESLint configuration
+### Options
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+In the options, you can change how much tons of gas pollutant is aimed to be reduced by the program. Pollutants to be reduced are:
+
+- CO2
+- NOx
+- SO2
+- PM2.5
+- CH4
+- VOC
+- CO
+- NH3
+- Black Carbon (BC)
+- N2O
+
+### Tableau
+
+All selected projects and the values of gas pollutants to be reduced are added to a Tableau class. This class setups a two-dimensional array to be used in the Simplex calculation.
+
+### Simplex
+
+The Tableau object is utilized by the Simplex class. Dual Simplex Minimization is performed in the tableau, where the final solution is contained in the last row of the tableau. The Simplex class also contains all the iterations and solutions of the resulting tableau.
+
+## installation
+
+Try out the website with this link:
+
+https://greenvale-pollutant-reduction-proje.vercel.app/
+
+or create a local copy:
+
+git clone https://github.com/francogabrieloliveros/greenvale-pollutant-reduction-project.git
+
+cd greenvale-pollutant-reduction-project
+
+npm install
+
+npm run dev
