@@ -1,7 +1,5 @@
 <img src="/public/aerokatharos.png" alt="" style="width: 100%;">
 
-# Aero Katharos
-
 ## City of Greenvale Pollutant Reduction Project
 
 This project aims to aid the pollutant reduction project of City of Greenvale by approximating the smallest cost to meet the City's goals pollutant reduction. A list of mitigation projects and their corresponding cost can be selected and the program will display the optimum number of implementations per project.
