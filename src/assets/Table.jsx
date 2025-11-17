@@ -12,7 +12,7 @@ function Table(props) {
 
   // Create table of results
   const dataDisp = (
-    <div className="mb-5 grid grid-cols-3 gap-2 rounded-xl bg-white p-5 text-gray-500 shadow-xl">
+    <div className="mb-5 grid w-full grid-cols-3 gap-2 rounded-xl bg-white p-5 text-gray-500 shadow-xl">
       <div className="font-bold">
         <h2>Mitigation Project</h2>
       </div>
