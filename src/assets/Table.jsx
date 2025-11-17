@@ -53,10 +53,12 @@ function Table(props) {
 
   // Creates a table for each iteration tableau
   const itersDisp = iters.map((iter) => {
-    const table = iter.map((row) => (
+    const table = iter.map((row, ind) => (
       <tr>
         {row.map((el) => (
-          <td className="bg-gray-100 p-2 text-center text-xs shadow-xs">
+          <td
+            className={`${ind == iter.length - 1 ? "bg-gray-300" : "bg-gray-100"} p-2 text-center text-xs shadow-xs`}
+          >
             {el.toFixed(2)}
           </td>
         ))}

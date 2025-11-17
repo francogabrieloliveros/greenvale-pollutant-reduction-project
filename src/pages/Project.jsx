@@ -122,6 +122,7 @@ function Project() {
       const simplex = new Simplex(tableau.tableau);
       console.log(simplex.resultMatrix);
 
+      setExpandSideBar(false);
       // Render table if calculation is successful
       return (
         <Table
