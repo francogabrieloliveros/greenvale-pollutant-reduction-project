@@ -107,7 +107,7 @@ const mitigationProjects = [
 
   {
     cost: 2800,
-    name: "Agriculturam Methane Reduction",
+    name: "Agricultural Methane Reduction",
     pollutantReduction: [8, 0.02, 0.01, 0.02, 7.2, 0.05, 0.02, 0.1, 0, 0.05],
   },
 
