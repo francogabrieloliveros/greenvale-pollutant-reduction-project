@@ -23,8 +23,6 @@ function Infeasible(props) {
 
     const labels = iter[0].map((el, ind) => {
       const slackIndices = 10 + iter.length - 1;
-      console.log(iter);
-      console.log(slackIndices);
       if (ind === iter[0].length - 2) {
         return <th>Z</th>;
       } else if (ind === iter[0].length - 1) {
