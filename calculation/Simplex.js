@@ -3,6 +3,7 @@ export default class SimplexMinimization {
   #matrix;
   #lastRowInd;
   #lastColInd;
+  #isFeasible = true;
 
   constructor(matrix) {
     this.#matrix = matrix;
@@ -35,7 +36,8 @@ export default class SimplexMinimization {
     // If Math.min is infinite, there are no positve ratios
     // This implies an infeasible problem
     if (!isFinite(minPosRatio)) {
-      throw new Error("Problem is infeasible");
+      this.#isFeasible = false;
+      return null;
     }
 
     return ratios.indexOf(minPosRatio);
@@ -73,7 +75,8 @@ export default class SimplexMinimization {
   // performs gaussElimination until no negative values are in the last row
   #simplex() {
     this.#iterations.push(this.#matrix.map((row) => [...row]));
-    while (this.#lastRowMin() < 0) {
+    while (this.#lastRowMin() < 0 && this.#isFeasible) {
+      if (this.#pivotRowInd() == null) return;
       this.#gaussElimination();
       this.#iterations.push(this.#matrix.map((row) => [...row]));
     }
@@ -100,5 +103,9 @@ export default class SimplexMinimization {
 
   get z() {
     return this.#matrix[this.#lastRowInd][this.#lastColInd];
+  }
+
+  get isFeasible() {
+    return this.#isFeasible;
   }
 }

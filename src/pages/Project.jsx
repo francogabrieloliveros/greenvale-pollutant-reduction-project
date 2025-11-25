@@ -6,6 +6,7 @@ import Header from "/src/assets/Header.jsx";
 import MitigationButton from "/src/assets/MitigationButton.jsx";
 import Input from "/src/assets/Input.jsx";
 import Table from "/src/assets/Table.jsx";
+import Infeasible from "/src/assets/Infeasible.jsx";
 
 // Images
 import triangle from "/triangle.svg";
@@ -69,16 +70,6 @@ function Project() {
   );
   const [mainDisplay, setMainDisplay] = useState(starterMain);
 
-  const infeasible = (
-    <div className={`mt-[calc(50dvh-129px)] flex flex-col items-center`}>
-      <img className="mb-5 w-60" src={greenvale} alt="" />
-      <p className="text-gray-500">
-        The problem is infeasible, select more mitigation projects or adjust the
-        options to fix.
-      </p>
-    </div>
-  );
-
   // Iterate through projects and add data to MitigationButton component
   const buttons = projects.map((project, i) => (
     <MitigationButton
@@ -117,11 +108,9 @@ function Project() {
   function calculate() {
     const pollutants = pollutantReducAmount.map((p) => p.amount);
     const tableau = new Tableau(buttonsPressed, pollutants, maxImp);
+    const simplex = new Simplex(tableau.tableau);
 
-    try {
-      const simplex = new Simplex(tableau.tableau);
-      console.log(simplex.resultMatrix);
-
+    if (simplex.isFeasible) {
       setExpandSideBar(false);
       // Render table if calculation is successful
       return (
@@ -131,10 +120,9 @@ function Project() {
           projects={tableau.selectedProjects}
         />
       );
-    } catch (e) {
-      // Renders infeasible message in case of error
-      console.error(e);
-      return infeasible;
+    } else {
+      setExpandSideBar(false);
+      return <Infeasible iter={simplex.iterations} />;
     }
   }
 
