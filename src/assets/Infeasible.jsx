@@ -22,10 +22,12 @@ function Infeasible(props) {
     ));
 
     const labels = iter[0].map((el, ind) => {
-      const slackIndices = 10 + iter[0].length - 1;
-      if (ind === iter[0][0].length - 2) {
+      const slackIndices = 10 + iter.length - 1;
+      console.log(iter);
+      console.log(slackIndices);
+      if (ind === iter[0].length - 2) {
         return <th>Z</th>;
-      } else if (ind === iter[0][0].length - 1) {
+      } else if (ind === iter[0].length - 1) {
         return <th>Sol</th>;
       } else if (ind < slackIndices) {
         return (
@@ -33,7 +35,7 @@ function Infeasible(props) {
             s<sub>{ind}</sub>
           </th>
         );
-      } else if (ind >= slackIndices || ind < iter[0][0].length - 2) {
+      } else if (ind >= slackIndices || ind < iter[0].length - 2) {
         return (
           <th>
             x<sub>{ind - slackIndices}</sub>
