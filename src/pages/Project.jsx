@@ -118,11 +118,18 @@ function Project() {
           data={simplex.resultMatrix}
           iter={simplex.iterations}
           projects={tableau.selectedProjects}
+          basicSols={simplex.iterBasicSol}
+          finalBasicSol={simplex.basicSol}
         />
       );
     } else {
       setExpandSideBar(false);
-      return <Infeasible iter={simplex.iterations} />;
+      return (
+        <Infeasible
+          iter={simplex.iterations}
+          basicSols={simplex.iterBasicSol}
+        />
+      );
     }
   }
 

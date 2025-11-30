@@ -6,20 +6,29 @@ function Infeasible(props) {
   const [showIters, setShowIters] = useState(false);
 
   const iters = props.iter;
+  const iterBasicSols = props.basicSols;
 
   // Creates a table for each iteration tableau
-  const itersDisp = iters.map((iter) => {
+  const itersDisp = iters.map((iter, index) => {
     const table = iter.map((row, ind) => (
       <tr>
         {row.map((el) => (
-          <td
-            className={`${ind == iter.length - 1 ? "bg-gray-300" : "bg-gray-100"} p-2 text-center text-xs shadow-xs`}
-          >
+          <td className={`bg-gray-100 p-2 text-center text-xs shadow-xs`}>
             {el.toFixed(2)}
           </td>
         ))}
       </tr>
     ));
+
+    const basicSol = (
+      <tr>
+        {iterBasicSols[index].map((el) => (
+          <td className={`bg-gray-300 p-2 text-center text-xs shadow-xs`}>
+            {el.toFixed(2)}
+          </td>
+        ))}
+      </tr>
+    );
 
     const labels = iter[0].map((el, ind) => {
       const slackIndices = 10 + iter.length - 1;
@@ -48,33 +57,43 @@ function Infeasible(props) {
           <tr>{labels}</tr>
         </thead>
         <tbody>{table}</tbody>
+        <tbody>
+          <tr>
+            <td>
+              <br />
+            </td>
+          </tr>
+        </tbody>
+        <tbody>{basicSol}</tbody>
       </table>
     );
   });
 
   return (
-    <div className={`mt-[calc(50dvh-129px)] flex flex-col items-center`}>
-      <img className="mb-5 w-60" src={greenvale} alt="" />
-      <p className="text-gray-500">
-        The problem is infeasible, select more mitigation projects or adjust the
-        options to fix.
-      </p>
-
-      <button
-        className="mx-auto mb-5 flex flex-col items-center transition-all"
-        onClick={() => setShowIters(!showIters)}
-      >
-        <p className="text-gray-500 transition-all">
-          {showIters ? "Hide" : "Show"} Iterations
+    <>
+      <div className={`mt-[calc(50dvh-129px)] flex flex-col items-center`}>
+        <img className="mb-5 w-60" src={greenvale} alt="" />
+        <p className="text-gray-500">
+          The problem is infeasible, select more mitigation projects or adjust
+          the options to fix.
         </p>
-        <img
-          className={`${showIters ? "rotate-270" : "rotate-90"} w-4 transition-all`}
-          src={triangle}
-          alt=""
-        />
-      </button>
+
+        <button
+          className="mx-auto mb-5 flex flex-col items-center transition-all"
+          onClick={() => setShowIters(!showIters)}
+        >
+          <p className="text-gray-500 transition-all">
+            {showIters ? "Hide" : "Show"} Iterations
+          </p>
+          <img
+            className={`${showIters ? "rotate-270" : "rotate-90"} w-4 transition-all`}
+            src={triangle}
+            alt=""
+          />
+        </button>
+      </div>
       {showIters ? itersDisp : undefined}
-    </div>
+    </>
   );
 }
 

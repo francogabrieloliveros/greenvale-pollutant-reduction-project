@@ -6,6 +6,8 @@ function Table(props) {
   const projects = props.projects;
   const data = props.data;
   const iters = props.iter;
+  const iterBasicSols = props.basicSols;
+  const finalBasicSol = props.finalBasicSol;
 
   // Controls visibility of iterations
   const [showIters, setShowIters] = useState(false);
@@ -52,18 +54,35 @@ function Table(props) {
   );
 
   // Creates a table for each iteration tableau
-  const itersDisp = iters.map((iter) => {
+  const itersDisp = iters.map((iter, index) => {
     const table = iter.map((row, ind) => (
       <tr>
         {row.map((el) => (
-          <td
-            className={`${ind == iter.length - 1 ? "bg-gray-300" : "bg-gray-100"} p-2 text-center text-xs shadow-xs`}
-          >
+          <td className={`bg-gray-100 p-2 text-center text-xs shadow-xs`}>
             {el.toFixed(2)}
           </td>
         ))}
       </tr>
     ));
+
+    const basicSol =
+      index === iters.length - 1 ? (
+        <tr>
+          {finalBasicSol.map((el) => (
+            <td className={`bg-gray-300 p-2 text-center text-xs shadow-xs`}>
+              {el.toFixed(2)}
+            </td>
+          ))}
+        </tr>
+      ) : (
+        <tr>
+          {iterBasicSols[index].map((el) => (
+            <td className={`bg-gray-300 p-2 text-center text-xs shadow-xs`}>
+              {el.toFixed(2)}
+            </td>
+          ))}
+        </tr>
+      );
 
     const labels = iter[0].map((el, ind) => {
       const slackIndices = 10 + data.length - 1;
@@ -92,6 +111,14 @@ function Table(props) {
           <tr>{labels}</tr>
         </thead>
         <tbody>{table}</tbody>
+        <tbody>
+          <tr>
+            <td>
+              <br />
+            </td>
+          </tr>
+        </tbody>
+        <tbody>{basicSol}</tbody>
       </table>
     );
   });

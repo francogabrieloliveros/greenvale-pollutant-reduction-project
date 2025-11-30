@@ -1,5 +1,6 @@
 export default class SimplexMinimization {
   #iterations = [];
+  #iterBasicSols = [];
   #matrix;
   #lastRowInd;
   #lastColInd;
@@ -71,14 +72,44 @@ export default class SimplexMinimization {
     });
   }
 
+  #formIterBasicSol() {
+    const colCount = this.#matrix[0].length;
+    const iterBasicSol = [];
+
+    for (let i = 0; i < this.#matrix[0].length; i++) {
+      const column = this.#matrix.map((row) => row[i]);
+
+      if (Math.min(...column) === -1 && Math.max(...column) === 0) {
+        const isUnique = column.filter((el) => el === -1).length === 1;
+
+        iterBasicSol.push(
+          isUnique ? this.#matrix[column.indexOf(-1)][colCount - 1] : 0,
+        );
+      } else if (Math.max(...column) === 1 && Math.min(...column) === 0) {
+        const isUnique = column.filter((el) => el === 1).length === 1;
+
+        iterBasicSol.push(
+          isUnique ? this.#matrix[column.indexOf(1)][colCount - 1] : 0,
+        );
+      } else {
+        iterBasicSol.push(0);
+      }
+    }
+
+    return iterBasicSol;
+  }
+
   // Adds the initial tableau and the following iterations to an array
   // performs gaussElimination until no negative values are in the last row
   #simplex() {
     this.#iterations.push(this.#matrix.map((row) => [...row]));
+    this.#iterBasicSols.push(this.#formIterBasicSol());
+
     while (this.#lastRowMin() < 0 && this.#isFeasible) {
       if (this.#pivotRowInd() == null) return;
       this.#gaussElimination();
       this.#iterations.push(this.#matrix.map((row) => [...row]));
+      this.#iterBasicSols.push(this.#formIterBasicSol());
     }
   }
 
@@ -91,6 +122,10 @@ export default class SimplexMinimization {
 
   get resultMatrix() {
     return this.#matrix.map((row) => [...row]);
+  }
+
+  get iterBasicSol() {
+    return this.#iterBasicSols.map((basicSol) => [...basicSol]);
   }
 
   get basicSol() {
