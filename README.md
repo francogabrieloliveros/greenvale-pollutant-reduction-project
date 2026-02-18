@@ -35,6 +35,7 @@ take note that you should have nodeJS and npm installed in your local machine.
 
 - You can change the pollutant reduction goals by clicking on the gear option and changing the values.
 - You can see each iteration of the calculation by clicking on Show Iterations after calculation.
+- Checkout the [manual](https://drive.google.com/file/d/1VLIvUusRpgq9sKvbh-z-tBsTm28FLu6w/view?usp=sharing) for more details.
 
 ## Calculations
 
